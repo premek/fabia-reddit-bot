@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import praw
 import re
+import time
 from comment import get_reply
 
 reddit = praw.Reddit("fabia_bot")
@@ -23,19 +24,27 @@ def should_reply_to(comment):
         return False
     return should_reply_to(comment.parent())
 
-def run(sub):
-    for comment in reddit.subreddit(sub).stream.comments(skip_existing=True):
-        print(f'comment: {comment.id}\n{comment.body}') # debug
+def process_comment(comment):
+        #print(f'comment: {comment.permalink} {comment.created_utc}\n{comment.body}') # debug
         reply = get_reply(comment.body)
         if reply:
             comment.refresh()
             if should_reply_to(comment):
-                print(f'Comment: {comment.id}')
+                print(f'Comment: {comment.permalink} {comment.created_utc}')
                 print(comment.body)
                 print("Reply:")
                 print(reply)
                 print("------")
-                # comment.reply(body=reply) # not ready yet
+                comment.reply(body=reply)
+
+def run(sub):
+    while True:
+        try:
+            for comment in reddit.subreddit(sub).stream.comments(skip_existing=True):
+                process_comment(comment)
+        except prawcore.exceptions.ServerError as e:
+            print(e)
+            time.sleep(30)
 
 
 def delete_my_comments():
@@ -46,3 +55,4 @@ def delete_my_comments():
 
 run("czech") # !!! change to "premektest" for premek's tests
 
+print(f'Finished at {time.time()}')
