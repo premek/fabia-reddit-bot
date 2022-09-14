@@ -1,30 +1,36 @@
+import re
 from numericalunits import km, m, cm, mm
 
-import re
 
-regex = re.compile(r"""
+regex = re.compile(
+    r"""
         (?P<num>\d+([.,]\d{1,3})?)
         [ ]?
         (?P<unit>[cmk]?m(?=[ ,.?!;:]|$)|metr[ůyu]?|meters?)
-        """, re.X)
+        """,
+    re.X,
+)
+
 
 def extract(text):
     return list(map(convert, re.finditer(regex, text)))
 
+
 def convert(match):
-    return (match.group(), num(match.group('num')) * unit(match.group('unit')))
+    return (match.group(), get_num(match.group("num")) * get_unit(match.group("unit")))
 
-def num(n):
-    return float(n.replace(',','.'))
 
-def unit(u):
-    if re.match(r'^mm', u):
-      return mm
-    if re.match(r'^cm', u):
-      return cm
-    if re.match(r'^km', u):
-      return km
-    if re.match(r'^m|metr[ůyu]?|meters?$', u):
-      return m
+def get_num(num):
+    return float(num.replace(",", "."))
 
-  
+
+def get_unit(unit):
+    if re.match(r"^mm", unit):
+        return mm
+    if re.match(r"^cm", unit):
+        return cm
+    if re.match(r"^km", unit):
+        return km
+    if re.match(r"^m|metr[ůyu]?|meters?$", unit):
+        return m
+    raise Exception("unknown unit: " + unit)

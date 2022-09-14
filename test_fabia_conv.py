@@ -4,8 +4,7 @@ from fabia_conv import conv_len, fabia_length
 
 
 class Test(unittest.TestCase):
-
-    def test(self):
+    def test_whole(self):
         self.assertEqual(conv_len(-1 * m), "to není ani čtvrt fabie")
         self.assertEqual(conv_len(-10 * m), "to není ani čtvrt fabie")
         self.assertEqual(conv_len(-100 * m), "to není ani čtvrt fabie")
@@ -26,7 +25,8 @@ class Test(unittest.TestCase):
         self.assertEqual(conv_len(16 * m), "to jsou asi 4 fabie")
         self.assertEqual(conv_len(20 * m), "to je asi 5 fabií")
         self.assertEqual(conv_len(21 * m), "to je asi 5 a čtvrt fabií")
-        
+
+    def test_frac(self):
         self.assertEqual(conv_len(0.1 * m), "to není ani čtvrt fabie")
         self.assertEqual(conv_len(0.4 * m), "to není ani čtvrt fabie")
         self.assertEqual(conv_len(0.5 * m), "to není ani čtvrt fabie")
@@ -37,6 +37,7 @@ class Test(unittest.TestCase):
         self.assertEqual(conv_len(2.4 * m), "to je asi půl fabie")
         self.assertEqual(conv_len(2.5 * m), "to je asi tři čtvrtě fabie")
 
+    def test_big(self):
         self.assertEqual(conv_len(78 * m), "to je asi 19 a tři čtvrtě fabií")
         self.assertEqual(conv_len(79 * m), "to je asi 20 fabií")
         self.assertEqual(conv_len(80 * m), "to je asi 20 fabií")
@@ -48,12 +49,13 @@ class Test(unittest.TestCase):
         self.assertEqual(conv_len(1201 * m), "to je asi 303 fabií")
         self.assertEqual(conv_len(120100 * m), "to je asi 30328 fabií")
 
+    def test_units(self):
         self.assertEqual(conv_len(4000 * mm), "to je asi jedna fabie")
         self.assertEqual(conv_len(400 * cm), "to je asi jedna fabie")
         self.assertEqual(conv_len(0.004 * km), "to je asi jedna fabie")
         self.assertEqual(conv_len(4 * km), "to je asi 1010 fabií")
 
-
+    def test_edges(self):
         self.assertEqual(conv_len(fabia_length * 0.01), "to není ani čtvrt fabie")
         self.assertEqual(conv_len(fabia_length * 0.24), "to není ani čtvrt fabie")
 
@@ -72,5 +74,5 @@ class Test(unittest.TestCase):
         self.assertEqual(conv_len(fabia_length * 1.13), "to je asi jedna a čtvrt fabie")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
