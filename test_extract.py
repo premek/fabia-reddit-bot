@@ -56,7 +56,3 @@ class Test(unittest.TestCase):
             [],
         )
         self.assertEqual(extract("used 1.5mm² CU wire"), [])
-
-
-if __name__ == "__main__":
-    unittest.main()

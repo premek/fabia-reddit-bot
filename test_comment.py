@@ -78,7 +78,3 @@ class Test(unittest.TestCase):
 # -- neopakovat stejne..
 # 5 km to je asi 1262 fabií 3 km to je asi 757 fabií 3 km to je asi 757 fabií
 # 176cm je pul fab, 178 cm je pul fab - neopakovat pokud vysledek je stejny
-
-
-if __name__ == "__main__":
-    unittest.main()

@@ -72,7 +72,3 @@ class Test(unittest.TestCase):
         self.assertEqual(conv_len(fabia_length * 1.12), "to je asi jedna fabie")
 
         self.assertEqual(conv_len(fabia_length * 1.13), "to je asi jedna a čtvrt fabie")
-
-
-if __name__ == "__main__":
-    unittest.main()

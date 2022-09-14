@@ -30,4 +30,4 @@ def conv_len(length):
         return f"to {jsou} asi {whole_and}půl {fab}"
     if frac == 0.75:
         return f"to {jsou} asi {whole_and}tři čtvrtě {fab}"
-    return f"to {jsou} přibližně {whole} {fab}"  # should not happen?
+    return f"to {jsou} přibližně {whole} {fab}"  # should not happen # pragma: no cover
