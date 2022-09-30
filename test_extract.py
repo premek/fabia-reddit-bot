@@ -13,6 +13,10 @@ class Test(unittest.TestCase):
         self.assertEqual(extract("1 m"), [("1 m", 1 * m)])
         self.assertEqual(extract("1 m."), [("1 m", 1 * m)])
 
+        self.assertEqual(extract("1cm"), [("1cm", 1 * cm)])
+        self.assertEqual(extract("1mm."), [("1mm", 1 * mm)])
+        self.assertEqual(extract("1km "), [("1km", 1 * km)])
+
         self.assertEqual(extract("kazdych 30m je krizovatka"), [("30m", 30 * m)])
         self.assertEqual(extract("max 1.6m long"), [("1.6m", 1.6 * m)])
         self.assertEqual(
@@ -56,3 +60,4 @@ class Test(unittest.TestCase):
             [],
         )
         self.assertEqual(extract("used 1.5mm² CU wire"), [])
+        self.assertEqual(extract("5metrov nebo 1metrák"), [])
