@@ -15,6 +15,7 @@ regex = re.compile(
 )
 
 
+# returns list of tuples (length_text, num*unit)
 def extract(text):
     return list(map(convert, re.finditer(regex, text)))
 

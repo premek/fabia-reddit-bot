@@ -7,6 +7,14 @@ fabia_length = 3.96 * m
 
 
 def conv_len(length):
+    """Converts si unit length to fabia length
+
+    Args:
+        length: float, using numericalunits.
+    Returns:
+        fabia length string, e.g. "to je asi jedna fabie"
+    """
+
     if length < fabia_length / 4:
         return "to není ani čtvrt fabie"
 

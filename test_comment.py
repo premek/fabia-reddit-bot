@@ -34,7 +34,7 @@ class Test(unittest.TestCase):
         self.asrt("Měřím 192 cm a prostě", ">192 cm\n\nto je asi půl fabie")
         self.asrt(
             "mám skoro 2 metry, ex měla 150 cm a stalo se",
-            ">2 metry\n\nto je asi půl fabie\n\n>150 cm\n\nto je asi půl fabie",
+            ">2 metry\n\nto je asi půl fabie",
         )
         self.asrt(
             "staré domy zdi třeba 800 mm i klidně metr, a nebo jestli mají zdi 3400 mm.",
@@ -42,7 +42,6 @@ class Test(unittest.TestCase):
         )
 
         self.asrt("749 mm", None)
-        # self.asrt("750 mm", None)  # FIXME different result every time
         self.asrt("751 mm", ">751 mm\n\nto není ani čtvrt fabie")
         self.asrt(
             "třeba 800 mm, a nebo jestli mají zdi 400 mm.",
@@ -51,6 +50,12 @@ class Test(unittest.TestCase):
 
         self.asrt("9999 m", ">9999 m\n\nto je asi 2525 fabií")
         self.asrt("10001 m", None)
+
+        self.asrt(
+            "5 km 3 km 3 km",
+            ">5 km\n\nto je asi 1262 fabií\n\n>3 km\n\nto je asi 757 fabií",
+        )
+        self.asrt("176cm 178 cm", ">176cm\n\nto je asi půl fabie")
 
 
 # TODO
@@ -75,6 +80,3 @@ class Test(unittest.TestCase):
 # Benzin stál 30 Kč, pivo 27,
 
 # A to, že 178 cm je přesná šířka Fabie IV, neřekneš.
-# -- neopakovat stejne..
-# 5 km to je asi 1262 fabií 3 km to je asi 757 fabií 3 km to je asi 757 fabií
-# 176cm je pul fab, 178 cm je pul fab - neopakovat pokud vysledek je stejny
