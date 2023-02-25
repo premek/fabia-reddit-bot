@@ -2,7 +2,9 @@
 import time
 import praw
 from prawcore.exceptions import ServerError
+from prawcore.exceptions import BadJSON
 from praw.exceptions import RedditAPIException
+
 from comment import get_reply
 
 reddit = praw.Reddit("fabia_bot")
@@ -45,9 +47,13 @@ def run(sub):
         try:
             for comment in reddit.subreddit(sub).stream.comments(skip_existing=True):
                 process_comment(comment)
-        except (ServerError, RedditAPIException) as err:
+        except (ServerError, RedditAPIException, BadJSONn) as err:
             print(err)
             time.sleep(60)
+        except Exception as e:
+            print(err)
+            time.sleep(60*60*4) # 4h
+
 
 
 def delete_my_comments():
