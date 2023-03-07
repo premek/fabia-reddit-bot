@@ -56,27 +56,3 @@ class Test(unittest.TestCase):
             ">5 km\n\nto je asi 1262 fabií\n\n>3 km\n\nto je asi 757 fabií",
         )
         self.asrt("176cm 178 cm", ">176cm\n\nto je asi půl fabie")
-
-
-# TODO
-#    def test_h(self):
-# self.asrt("za cca 3 hodiny,"), ">3 hodiny\n\nto je asi 6 piv"
-# )
-# self.asrt("Avia u Znojma ma dokonce za 37Kc"),
-#    ">37Kc\n\nto je asi jedno pivo",
-# )
-
-
-# za 2 pizzy a 4 piva,
-# dvě piva místo jednoho
-# když si v hospodě po pěti pivech vyhlídneš slabšího jedince
-# zbytkac o sile 3 piv.
-# po 3 pivach :)
-# aspoň 3piva.
-# čtyři pětky za pivo
-# 364 pivek
-# jedno pivo
-# Měl jsem dnes 5 piv,
-# Benzin stál 30 Kč, pivo 27,
-
-# A to, že 178 cm je přesná šířka Fabie IV, neřekneš.

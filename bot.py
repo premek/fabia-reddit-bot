@@ -19,7 +19,7 @@ reddit = praw.Reddit("fabia_bot")
 
 
 def should_reply_to(comment):
-    if type(comment) is not praw.models.reddit.comment.Comment:
+    if not isinstance(comment, praw.models.reddit.comment.Comment):
         # end of recursion - parent is None or Submission
         return True
     if comment.author == reddit.user.me():
@@ -47,13 +47,12 @@ def run(sub):
         try:
             for comment in reddit.subreddit(sub).stream.comments(skip_existing=True):
                 process_comment(comment)
-        except (ServerError, RedditAPIException, BadJSONn) as err:
+        except (ServerError, RedditAPIException, BadJSON) as err:
             print(err)
             time.sleep(60)
-        except Exception as e:
+        except Exception:  # pylint: disable=broad-except
             print(err)
-            time.sleep(60*60*4) # 4h
-
+            time.sleep(60 * 60 * 4)  # 4h
 
 
 def delete_my_comments():
