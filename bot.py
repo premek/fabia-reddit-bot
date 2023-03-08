@@ -4,6 +4,7 @@ import praw
 from prawcore.exceptions import ServerError
 from prawcore.exceptions import BadJSON
 from praw.exceptions import RedditAPIException
+from praw.exceptions import ClientException
 
 from comment import get_reply
 
@@ -47,7 +48,7 @@ def run(sub):
         try:
             for comment in reddit.subreddit(sub).stream.comments(skip_existing=True):
                 process_comment(comment)
-        except (ServerError, RedditAPIException, BadJSON) as err:
+        except (ServerError, RedditAPIException, BadJSON, ClientException) as err:
             print(err)
             time.sleep(60)
         except Exception:  # pylint: disable=broad-except
