@@ -41,4 +41,4 @@ def get_unit(unit):
         return km
     if re.match(r"^m|metr[ůyu]?|meters?$", unit):
         return m
-    raise ValueError("unknown unit: " + unit) # pragma: no cover
+    raise ValueError("unknown unit: " + unit)  # pragma: no cover
