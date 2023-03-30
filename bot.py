@@ -51,7 +51,7 @@ def run(sub):
         except (ServerError, RedditAPIException, BadJSON, ClientException) as err:
             print(err)
             time.sleep(60)
-        except Exception:  # pylint: disable=broad-except
+        except Exception as err:  # pylint: disable=broad-except
             print(err)
             time.sleep(60 * 60 * 4)  # 4h
 
