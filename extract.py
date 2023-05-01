@@ -4,6 +4,7 @@ from numericalunits import km, m, cm, mm
 
 regex = re.compile(
     r"""
+        (^|[^-])
         (^|\b)
         (?P<text>
           (?P<num>\d+([.,]\d{1,3})?)

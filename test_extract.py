@@ -62,3 +62,7 @@ class Test(unittest.TestCase):
         self.assertEqual(extract("used 1.5mm² CU wire"), [])
         self.assertEqual(extract("5metrov nebo 1metrák"), [])
         self.assertEqual(extract("m2m program"), [])
+        self.assertEqual(extract("-680m"), [])
+        self.assertEqual(
+            extract("A [výkonné](https://example.com/radeon-680m.c3871)."), []
+        )
